@@ -20,7 +20,8 @@ export default class IntegrationService {
   }
 
   /**
-   * Used to get an access token to enable access to Parcel Perfect API
+   * Used to get an access token to enable access to Parcel Perfect API.
+   * The token is valid until you call the expireToken method.
    * @param username - username
    * @param password - password
    */
