@@ -5,8 +5,8 @@ export const makeCall = async (
   className: string,
   methodName: string,
   params: any,
-  token?: string,
-  baseUrl?: string
+  baseUrl?: string,
+  token?: string
 ) => {
   try {
     const queryparams = qs.stringify({

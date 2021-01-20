@@ -163,3 +163,94 @@ export type SubmitWaybillEventArgs = {
 export type GetSingleWaybillArgs = {
   waybillno: string;
 };
+
+export type GetWaybillArgs = {
+  waybillno: string;
+};
+
+export type GetPODArgs = {
+  waybillno: string;
+};
+
+export type GetTracksArgs = {
+  waybillno: string;
+};
+
+export type GetEventsArgs = {
+  /**
+   * tracking or waybill number
+   */
+  trackno: string;
+};
+
+export type GetWaybillsByDateArgs = {
+  /**
+   *  Date in format dd.mm.YYYY
+   */
+  startDate: string;
+  /**
+   *  Date in format dd.mm.YYYY
+   */
+  endDate: string;
+};
+
+export type GetPODsByDateArgs = {
+  /**
+   *  Date in format dd.mm.YYYY
+   */
+  startDate: string;
+  /**
+   *  Date in format dd.mm.YYYY
+   */
+  endDate: string;
+};
+
+export type GetWaybillByValueArgs = {
+  type: 'reference' | 'waybill' | 'tracking';
+  value: string;
+};
+
+export type GetPODImageArgs = {
+  /**
+   * Waybill number
+   */
+  waybill: string;
+  email?: string;
+  /**
+   * 0 to return image
+   * 1 to return url of image location
+   */
+  type: 0 | 1;
+};
+
+export type GetPODSignatureArgs = {
+  /**
+   * Waybill Number
+   */
+  waybill: string;
+};
+
+export type GetCollectionArgs = {
+  /**
+   * Collection number
+   */
+  collect: string;
+};
+
+export type ConfigureNotificationArgs = {
+  waybill: string;
+  email: string;
+  /**
+   * Config 1 = No event notifications
+   * Config 2 = Emails an event notification for every scanrule event (see table above).
+   * Config 3 = Operational events.
+   * Config 4 = Delivery events.
+   * Config 5 = Collection events.
+   */
+  config: 1 | 2 | 3 | 4 | 5;
+  /**
+   * 0 - insert or update configuration
+   * 1 - delete configuration
+   */
+  type: 0 | 1;
+};

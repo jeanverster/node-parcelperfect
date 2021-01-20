@@ -3,7 +3,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "description": "An unofficial JS wrapper around the Parcel Perfect services",
+  "description": "An unofficial JS wrapper around the Parcel Perfect APIs",
   "files": [
     "dist",
     "src"

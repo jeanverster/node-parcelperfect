@@ -28,14 +28,7 @@ export const expireToken = async (
   token_id: string,
   baseUrl?: string
 ): Promise<void> => {
-  const results = await makeCall(
-    'Auth',
-    'expireToken',
-    { token_id },
-    token_id,
-    baseUrl
-  );
-  return results;
+  return await makeCall('Auth', 'expireToken', { token_id }, baseUrl, token_id);
 };
 
 export const authenticate = async (

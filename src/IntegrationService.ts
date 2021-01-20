@@ -1,4 +1,4 @@
-import { authenticate } from './Auth';
+import { authenticate, expireToken } from './Auth';
 import {
   GetSingleWaybillArgs,
   SubmitEventArgs,
@@ -16,26 +16,63 @@ export default class IntegrationService {
   private readonly baseUrl: string;
   constructor(config: Config) {
     this.baseUrl =
-      config.baseUrl || 'http://adpdemo.pperfect.com/ppintegrationservice/v3';
+      config?.baseUrl || 'http://adpdemo.pperfect.com/ppintegrationservice/v3';
   }
 
+  /**
+   * Used to get an access token to enable access to Parcel Perfect API
+   * @param username - username
+   * @param password - password
+   */
   public authenticate = async (username: string, password: string) =>
     await authenticate(username, password, this.baseUrl);
 
-  public submitWaybill = async (args: SubmitWaybillArgs, token: string) =>
-    await makeCall('Waybill', 'submitWaybill', args, token, this.baseUrl);
+  /**
+   * Calling this method invalidates the existing token
+   * @param token - auth token
+   */
+  public expireToken = async (token: string) =>
+    await expireToken(token, this.baseUrl);
 
+  /**
+   * Use this method to submit waybill details along with contents, tracking numbers and references
+   * @param args - @type SubmitWaybillArgs
+   * @param token - auth token
+   */
+  public submitWaybill = async (args: SubmitWaybillArgs, token: string) =>
+    await makeCall('Waybill', 'submitWaybill', args, this.baseUrl, token);
+
+  /**
+   * Submit POD Details
+   * @param args - @type SubmitPODArgs
+   * @param token - auth token
+   */
   public submitPOD = async (args: SubmitPODArgs, token: string) =>
     await makeCall('POD', 'submitPOD', args, token);
 
+  /**
+   * Submit parcel level tracking events. Used when each piece of a consignment has tracking events.
+   * @param args - @type SubmitEventArgs
+   * @param token - auth token
+   */
   public submitEvent = async (args: SubmitEventArgs, token: string) =>
-    await makeCall('Event', 'submitEvent', args, token, this.baseUrl);
+    await makeCall('Event', 'submitEvent', args, this.baseUrl, token);
 
+  /**
+   * Used when a tracking event relates to an entire consignment.
+   * @param args - @type SubmitWaybillEventArgs
+   * @param token - auth token
+   */
   public submitWaybillEvent = async (
     args: SubmitWaybillEventArgs,
     token: string
-  ) => await makeCall('Event', 'submitWaybillEvent', args, token, this.baseUrl);
+  ) => await makeCall('Event', 'submitWaybillEvent', args, this.baseUrl, token);
 
+  /**
+   * Returns full waybill details by submitting a waybill no.
+   * @param args - @type GetSingleWaybillArgs
+   * @param token - auth token
+   */
   public getSingleWaybill = async (args: GetSingleWaybillArgs, token: string) =>
-    await makeCall('Event', 'getSingleWaybill', args, token, this.baseUrl);
+    await makeCall('Event', 'getSingleWaybill', args, this.baseUrl, token);
 }
