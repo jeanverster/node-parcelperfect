@@ -1,5 +1,7 @@
 node-parcelperfect / [Exports](modules.md)
 
+node-parcelperfect / [Exports](modules.md)
+
 # node-parcelperfect
 
 ## Table of contents
