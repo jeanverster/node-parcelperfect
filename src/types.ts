@@ -2,7 +2,21 @@ export type QuoteDetails = {
   waybill?: string;
   accnum: string;
   costcentre?: number;
-  service?: string;
+  service:
+    | 'ECO'
+    | 'OVN'
+    | 'LOX'
+    | 'AIR'
+    | 'SDX - Same Day Xpress'
+    | 'INT - International'
+    | 'INR - International Road'
+    | 'ECO - Economy'
+    | 'AIR - Domestic Airfreight'
+    | 'LSX - Local Sameday Xpress'
+    | 'LSE - Local Sameday Economy'
+    | 'OVN - Overnight'
+    | 'Saturday Delivery'
+    | 'Early Bird Delivery';
   waydate?: string;
   origpers?: string;
   origperadd1?: string;
