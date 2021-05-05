@@ -67,7 +67,8 @@ export default class IntegrationService {
   public submitWaybillEvent = async (
     args: SubmitWaybillEventArgs,
     token: string
-  ) => await makeCall('Event', 'submitWaybillEvent', args, this.baseUrl, token);
+  ) =>
+    await makeCall('Waybill', 'submitWaybillEvent', args, this.baseUrl, token);
 
   /**
    * Returns full waybill details by submitting a waybill no.
@@ -75,5 +76,5 @@ export default class IntegrationService {
    * @param token - auth token
    */
   public getSingleWaybill = async (args: GetSingleWaybillArgs, token: string) =>
-    await makeCall('Event', 'getSingleWaybill', args, this.baseUrl, token);
+    await makeCall('Waybill', 'getSingleWaybill', args, this.baseUrl, token);
 }
