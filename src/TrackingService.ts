@@ -27,8 +27,11 @@ export default class TrackingService {
    * @param username - username
    * @param password - password
    */
-  public authenticate = async (username: string, password: string) =>
-    await authenticate(username, password, this.baseUrl);
+  public authenticate = async (
+    username: string,
+    password: string,
+    ppcust?: string
+  ) => await authenticate(username, password, this.baseUrl, ppcust);
 
   /**
    * Calling this method invalidates the existing token
